@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<meta name="viewport" content="width:device-width,user-scalable=no"/>
+<link rel="stylesheet" href="./css/reset.css">
+<style>
+@-webkit-keyframes show{
+	0%{
+		opacity: 0;
+		-webkit-transform:translateY(0rem);
+	}
+	100%{
+		opacity: 1;
+		-webkit-transform:translateY(-1.4rem);
+	}
+}
+@-webkit-keyframes news{
+	0%{
+		-webkit-transform:scale(1);
+		opacity: 0;
+		
+	}
+	100%{
+		-webkit-transform:scale(1.14);
+		opacity: 1;
+	
+	}
+}
+@-webkit-keyframes fonts{
+	0%{
+		color: pink;
+		opacity: .6;
+		
+	}
+	100%{
+		color: white;
+		opacity: 1;
+	}
+}
+
+
+#welcome{
+	display: block;
+	width: 100%;
+	height: 100vh;
+	width: 100%;
+	height: 100vh;
+	opacity: 1;
+	transition: .8s;
+	
+}
+.logo{
+	position: absolute;
+	z-index: 1;
+	width: 80%;
+	height: 4rem;
+	left: 10%;
+	top: 30%;
+	opacity: 1;
+	animation:1.4s show ease;
+  	animation-fill-mode:forwards;
+	background: url(./img/logo1.png) no-repeat;
+	background-size:contain;		
+}
+.start{
+	position: absolute;
+	top: 6.8rem;
+	width: 70%;
+	left: 15%;
+	border-radius: 1.2rem;
+	background:-webkit-linear-gradient(180deg,rgba(255,130,171,.6) 0%, rgba(247,85,2,.6) 100%);
+	height: 2.4rem;
+	animation: 2s 1.4s fonts infinite alternate; 
+	color: pink;	
+	opacity: .6;	
+}
+.start p{
+		font-size: 1.6rem;
+		line-height: 2.4rem;
+		position: absolute;
+		width: 100%;
+		text-align: center;
+		margin: 0;
+		z-index: 2;
+		}
+.start span{
+		position: absolute;
+		width: 100%;
+		height: 2.4rem;
+		background:-webkit-linear-gradient(180deg,	rgba(255,130,171,.2) 0%, rgba(247,85,2,.2) 100%);
+		top: 0;
+		left: 0;
+		z-index: 1;
+	    border-radius: 1.2rem;
+		}
+.start	span:nth-of-type(1){
+			animation: 2s 1.4s news infinite alternate;
+		}
+.start	span:nth-of-type(2){
+			animation: 2s 1.9s news infinite alternate;
+		}
+.start	span:nth-of-type(3){
+			animation: 2s 2.4s news infinite alternate;
+		}
+
+#main{
+	width: 100%;
+	height: 100vh;
+	display:none;
+	opacity: 0;
+	transition: .8s;
+}
+.mask1,#mask2{
+	width: 100%;
+	height: 100vh;
+	position: absolute;
+	z-index: 0;
+	filter: blur(2px);
+	background:url(./img/timg.jpg) no-repeat -80px 0px;
+	background-size: cover;
+	transition: 1.2s;
+}/*
+-80  600   1000*/
+.box{
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+#round{
+	width:8rem;
+	height: 8rem;
+	background:url(./img/2.png) no-repeat -136px -140px;
+/*	background: url(./img/orange.png) no-repeat -120px -116px;*/
+	/*background: url(./img/3g.png) no-repeat -140px -176px;*/
+	border: 2px solid red;
+	background-size: 12rem 12rem;
+	margin:6rem auto;
+	border-radius: 50%;
+    position: relative;
+}
+#k_list{
+	height: 2rem;
+	position: absolute;
+	left: 0rem;
+	bottom: 0rem;	
+}
+#k_list li{
+	background:url(./img/11.png) no-repeat -36px -12px;
+	background-size: cover;
+	margin-right: .2rem;
+	width: .4rem;
+	height: 2rem;
+    transition:.5s; 
+	float: left;
+}
+#time{
+	display: block;
+	position: absolute;
+	right: .2rem;
+	top: .2rem;
+	width: 2rem;
+	height: 2rem;
+	background:#FFBBFF;
+	line-height: 2rem;
+	text-align: center;
+	font-size: 1.5rem;
+	border-radius: 50%;
+	color: white;
+}
+#r_list li{
+	width: .8rem;
+	height: 2.6rem; 
+	position: absolute;
+    top: 7.2rem;
+	left: 3.6rem;
+	background:url(./img/22.png) no-repeat -78px -26px;
+	background-size:3.4rem;	
+	display: none;
+	transform-origin: 0.4rem -3.2rem;
+	}
+/*#r_list li:nth-of-type(1){
+	-webkit-transform:rotate(180deg);
+}	*/
+
+#submit li{
+	position: absolute;
+	left: 7.6rem;
+	bottom: 0rem;
+	width: .8rem;
+	height: 2.6rem; 
+	/*	animation: 2s 2s rotate linear infinite;*/
+	transform-origin: 0 -3rem;
+	/*border:2px solid red;*/
+	background:url(./img/22.png) no-repeat -78px -26px;
+	background-size:3.4rem;	
+	display: none;
+}
+.infor{
+	position: absolute;
+	width: 10rem;
+	height: 6rem;
+/*	border:2px solid red;*/
+	background: url(./img/infor5.png) no-repeat 0px -124px;
+	background-size: cover;
+	top: -6rem;
+	left: 3rem;
+	z-index: 2;
+}
+.i_wrap{
+	width: 8.8rem;
+	height: 5.5rem;
+	background: #EEEED1;
+	margin: .25rem auto;
+}
+.infor span{
+	font-size: 1.2rem;
+	text-indent: 3.2rem;
+	letter-spacing: 10px;
+	color: rgba(255,106,106,.8);
+	-webkit-transform:rotate(8deg);
+	line-height: 2.6rem;
+	display: block;	
+}
+.infor img{
+	position: absolute;
+	top: -1rem;
+	left: 0;
+}
+.infor button{
+	outline: none;
+	position: absolute;
+	/*top: 6.8rem;*/
+	top: 3rem;
+	width: 60%;
+	left: 20%;
+	font-size: 1rem;
+	color: #FA8072;
+	box-shadow: 4px 4px 6px black;
+	border-radius: 1.2rem;
+	background:-webkit-linear-gradient(180deg,rgba(255,255,171,.6) 0%, rgba(247,85,222,.6) 100%);
+	height: 2.4rem;
+}
+#over{
+	display: none;
+	width: 100%;
+	height: 100vh;
+	width: 100%;
+	height: 100vh;
+	opacity: 0;
+	transition: .8s;
+}
+#over .logo{
+   background: url(./img/success.png) no-repeat;
+
+}
+#o_font{
+	font-size: 1.4rem;
+	color: red;
+	padding-left: 3.8rem;
+	line-height: 5rem;
+	font-style: italic;
+}
+</style>
+<script>
+(function(){
+	changeSize();
+	window.addEventListener('orientation' in window?"deviceorientation":"resize",function(){
+		changeSize();	
+	});//同时兼容pc端的onresize,和移动端的横竖屏事件。
+	function changeSize(){
+		var html=document.documentElement;
+		var width=html.clientWidth;
+		html.style.fontSize=width/16+"px";
+		// console.log(html.style.fontSize);这个值就是@rem。
+	}	
+})()
+</script>
+</head>
+<body>
+	<section id="welcome">
+		 <div class="mask1"></div>
+
+		 <div class="logo">
+		
+		 	 <a class="start" href="javascript:;">
+		        	<p>Let's Go</p>
+		        	<span></span>
+		        	<span></span>
+		        	<span></span>
+		     </a>
+		 </div>
+	</section>
+	<section id="main">
+		<div class="infor">
+			<div class="i_wrap">
+				<img src="./img/wa.png" alt="">
+				<span id="span">
+				游戏失败
+			    </span>
+				<button id="btn">angin  ?</button>
+			</div>
+	    </div>
+	    <div id="mask2"></div>
+		<div class="box">
+
+		    <span id="time"></span>
+
+			<div id="round">			
+				<ul id="r_list">
+					<!-- <li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li> -->
+				</ul>			
+			</div>
+
+				
+			<ul id="k_list">
+				<!-- <li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>	 -->	
+			</ul>
+
+			<ul id="submit">
+				<!-- <li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>	 -->
+			</ul>
+		</div>
+	</section>
+
+	<section id="over">
+		 <div class="mask1"></div>
+
+		<div class="logo">
+			 	<span id="o_font">我是最棒滴！</span>
+		 	 <a class="start" href="javascript:;">
+		        	<p>Continue   ?</p>
+		        	<span></span>
+		        	<span></span>
+		        	<span></span>
+		     </a>
+		 </div>
+	</section>
+
+</body>
+<script src="./js/m.Tween2.js"></script>
+<script>
+document.addEventListener('touchstart', function(e) {
+    e.preventDefault(); 
+});
+window.onload=function(){
+	function toNewpage(old,news){
+		old.style.opacity="0";
+	   	
+	   	setTimeout(function(){
+			old.style.display="none";
+			news.style.display="block";
+			setTimeout(function(){
+				news.style.opacity="1";
+			},100)
+			
+		},800);
+    }
+	var sbt=document.getElementById('submit');	
+	var r_list=document.getElementById("r_list");
+	var k_list=document.getElementById("k_list");
+	var round=document.getElementById("round");
+    var tag=document.getElementById("time");
+
+    var timer1=null;
+	var timer2=null;
+	var timer3=null;
+	var timer4=null;
+	var timer5=null;
+
+    var start1=document.getElementsByClassName("start")[0];
+    var start2=document.getElementsByClassName("start")[1];
+    var wel=document.getElementById("welcome");
+    var ov=document.getElementById("over");
+    var main=document.getElementById("main");
+    var mask=document.getElementById("mask2");
+    var infor=document.getElementsByClassName("infor")[0];
+
+  
+    var three=false;
+    var end=false;	    
+	var num=-1;   
+    var onoff=true;
+    var over=false;
+
+    var btn=document.getElementById("btn");
+
+    btn.addEventListener("touchend",function(){  
+        three=false;
+        end=false;  	   
+        getOne();
+    	MTween({
+				el:infor,
+				target:{
+					top:-document.documentElement.clientHeight/3
+				},
+				time:800,
+				type:"backIn",
+				callBack:function(){
+					mask.style.backgroundPosition="-80px 0px";
+					setTimeout(function(){	
+			    		round.style.background='url(./img/2.png) no-repeat -136px -140px';
+			 			round.style.backgroundSize="12rem 12rem";
+    				});
+					num=-1;
+			    	onoff=true;
+			    	over=false;
+				}
+		})
+    })
+        
+
+    start1.addEventListener("touchend",function(){
+     
+    	toNewpage(welcome,main);
+        getOne();    	
+    })
+
+    start2.addEventListener("touchend",function(){
+    	onoff=true;
+        over=false;
+        end=false;
+        num=-1;
+        mask.style.backgroundPosition="-80px 0px";
+		setTimeout(function(){	
+    		round.style.background='url(./img/2.png) no-repeat -136px -140px';
+ 			round.style.backgroundSize="12rem 12rem";
+		});
+    	toNewpage(ov,main);
+
+        getOne();    	
+    })
+
+    function getOne(){
+    	var arr1=["20","-40","160","260","-120","-80","360"];
+    	var timeout=30;
+    	auto(arr1,2000);
+    	timer3=setInterval(function(){    			
+    		tag.style.color="white";
+    		tag.innerHTML=timeout;
+    		timeout--;
+    		if (timeout<5) {
+    			tag.style.color="red";
+
+    		}
+    	     if (timeout<0) {
+    			onoff=false;
+    			over=true;
+    		    clearInterval(timer3);
+    			clearInterval(timer2);
+    			MTween({
+						el:infor,
+						target:{
+							top:document.documentElement.clientHeight/3.5
+						},
+						time:800,
+						type:"backOut"
+					})
+    		    }
+    	},1000)              
+        reset(6);
+    }
+
+    function getTwo(){
+    	three=true;
+        onoff=true;
+        over=false;
+        num=-1;
+    	var arr2=["40","90","-160","100","210","80","-120"];
+    	mask.style.backgroundPosition="-600px 0px";
+    	setTimeout(function(){
+    		round.style.background='url(./img/orange.png) no-repeat -120px -116px';
+ 			round.style.backgroundSize="12rem 12rem";
+    	},300);
+    	var timeout=25;
+    	timer4=setInterval(function(){
+    		tag.style.color="white";
+    		tag.innerHTML=timeout;
+    		timeout--;
+    		if (timeout<5) {
+    			tag.style.color="red";
+    		}
+    	     if (timeout<0) {
+    			onoff=false;
+    			over=true;
+    			clearInterval(timer4);
+    			clearInterval(timer2);
+    			MTween({
+						el:infor,
+						target:{
+							top:document.documentElement.clientHeight/3.5
+						},
+						time:800,
+						type:"backOut"
+					})
+    		    }
+    	},1000)
+    	
+    	auto(arr2,2000)
+    	reset(8);    	
+    }
+
+    function getThree(){
+    	three=false;
+    	end=true;
+    	onoff=true;
+        over=false;
+        num=-1;
+    	var arr3=["60","-10","180","260","270","20","360"];
+    	mask.style.backgroundPosition="-1000px 0px";
+    	setTimeout(function(){
+    		round.style.background='url(./img/3g.png) no-repeat -140px -176px';
+ 			round.style.backgroundSize="12rem 12rem";
+    	},300);
+    	var timeout=28;
+    	timer5=setInterval(function(){
+    		tag.style.color="white";
+    		tag.innerHTML=timeout;
+    		timeout--;
+    		if (timeout<5) {
+    			tag.style.color="red";
+    		}
+    	     if (timeout<0) {
+    			onoff=false;
+    			over=true;
+    			clearInterval(timer5);
+    			clearInterval(timer2);
+    			MTween({
+						el:infor,
+						target:{
+							top:document.documentElement.clientHeight/3.5
+						},
+						time:800,
+						type:"backOut"
+					})
+    		    }
+    	},1000)   	
+    	auto(arr3,2000)
+    	reset(10);
+    }
+    	        
+    function reset(num_li){
+         sbt.innerHTML='';
+         r_list.innerHTML='';
+         k_list.innerHTML='';
+
+   
+	    for(var i=0;i<num_li;i++)
+	    {
+	    	// var li=document.createElement("li");
+	    	// sbt.appendChild(li);
+	    	sbt.innerHTML+="<li></li>";
+	    }
+	    for(var i=0;i<num_li;i++)
+	    {
+	    	r_list.innerHTML+="<li></li>";
+	    
+	    }
+	    for(var i=0;i<num_li-1;i++)
+	    {
+	    	
+	    	k_list.innerHTML+="<li></li>";
+	    }
+	    var lis1=sbt.getElementsByTagName('li');
+		var lis2=r_list.getElementsByTagName("li");
+		var lis3=k_list.getElementsByTagName("li");
+
+		lis1[0].style.display="block";
+      
+		 fn(lis1,lis2,lis3);
+    }
+   
+	
+
+
+    function auto(arr,time){
+    	var inow=0;
+    	animate();
+	    timer2=setInterval(function(){
+	    	 animate();
+	    },time)	   
+	    function animate(){	    	
+	    	MTween({
+				el:round,
+				target:{
+					rotate:arr[inow]
+				},
+				time:time,
+				type:"linear"
+			})
+			inow=(inow+1)%4;
+	    }
+    }
+
+   
+    function fn(lis1,lis2,lis3){
+   
+    var maxTop=document.documentElement.clientWidth/16*13.5;
+	
+	var startTop=sbt.offsetTop;
+	
+
+	main.addEventListener("touchend",function(){
+        
+		if (onoff) {
+			num++;
+			onoff=false;
+			clearInterval(timer1);
+			var spend=20;
+			
+			timer1=setInterval(function(){
+			
+			lis1[num].style.top=lis1[num].offsetTop-spend+"px";
+            var top=parseInt(lis1[num].style.top);
+			if (top<maxTop) {
+				clearInterval(timer1);
+				var deg=css(round,"rotate");
+				
+				lis1[num].style.display="none";
+				lis2[num].style.display="block";
+				if (lis3.length-num-1>=0) {
+					lis3[lis3.length-num-1].style.opacity="0";
+				}
+				
+				css(lis2[num],"rotate",-deg);
+
+				for(var i=0;i<num+1;i++){
+					if (i!=num) {
+						if (Math.abs(-deg-css(lis2[i],"rotate"))<10) {
+						    over=true;
+						    clearInterval(timer2);
+						    clearInterval(timer3);
+						    clearInterval(timer4);
+						    clearInterval(timer5);
+
+							MTween({
+								el:lis2[num],
+								target:{
+									top:3*document.documentElement.clientHeight/4
+								},
+								time:300,
+								type:"easeBoth",
+								callBack:function(){
+									MTween({
+										el:infor,
+										target:{
+											top:document.documentElement.clientHeight/3.5
+										},
+										time:800,
+										type:"backOut"
+									})
+									
+								}
+							})
+						}	
+				    }		    
+				}
+               
+                	if (over==false) {
+	                	if (num==lis1.length-1) {
+		                	if (three) {
+		                		clearInterval(timer2);
+		                		clearInterval(timer4);
+		                		getThree();
+		                	}
+		                	else if (end) {            
+		                		clearInterval(timer2);
+		                		clearInterval(timer5);
+		                		toNewpage(main,ov);
+		                	}
+		                	else{		                
+		                		clearInterval(timer2);
+								clearInterval(timer3);
+		                		getTwo();
+		                	}
+					    }
+						else{					
+							lis1[num+1].style.display="block";
+							  onoff=true;
+						}
+					}				
+			}		
+		    },12)
+	    }
+	})
+    }
+
+}
+</script>
+</html>

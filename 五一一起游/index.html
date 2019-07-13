@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<meta name="viewport" content="width:device-width,user-scalable=no"/>
+<link rel="stylesheet" href="./css/reset.css">
+<link rel="stylesheet" href="./css/index.css">
+<script>
+(function(){
+	changeSize();
+	window.addEventListener('orientation' in window?"deviceorientation":"resize",function(){
+		changeSize();	
+	});//同时兼容pc端的onresize,和移动端的横竖屏事件。
+	function changeSize(){
+		var html=document.documentElement;
+		var width=html.clientWidth;
+		html.style.fontSize=width/16+"px";
+		// console.log(html.style.fontSize);这个值就是@rem。
+	}	
+})()
+</script>
+</head>
+<body>
+	<section class="page" id="welcome">
+		<div class="top">
+			<ul class="list">
+				<li>
+					<img src="./img/tree.jpg" alt="">
+
+					<img id="cloud1" src="./img/cloud.png" alt="">
+					<img id="cloud2" src="./img/cloud.png" alt="">
+					<img id="cloud3" src="./img/cloud.png" alt="">
+				</li>
+				<li>
+					<img src="./img/title.png" alt="">
+					<img src="./img/shake.png" alt="">
+				</li>
+				<li>
+					<img src="./img/title2.png" alt="">
+				</li>
+			</ul>
+		</div>
+        <div class="bottom">
+    		<img src="./img/logo.png" alt="">
+        </div>
+	</section>
+
+	<section class="page" id="main">
+		<div id="m_wrap">
+			<div id="topimg">
+				<ul id="i_list">
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+		        <ul id="b_list">
+					<h2>成都九寨沟景区</h2>
+	                <div id="wrap">	        	
+		                <li class="a_active"></li>
+			        	<li></li>
+			        	<li></li>
+			        	<li></li>
+			        	<li></li>
+		        	</div>
+		        </ul>	 
+		        <a id="toNews" href="javascript:;">
+		        	<p>新闻线索</p>
+		        	<span></span>
+		        	<span></span>
+		        	<span></span>
+		        </a>
+		        	
+
+      
+			</div>
+
+			<div id="score">
+				<h2>给景区评分</h2>
+				<ul class="star_list">
+					<li>
+						<h4>综合印象</h4>
+						<div class="star_wrap" id="star1">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<input type="hidden" value="0颗星星">
+						</div>				
+					</li>
+					<li>
+						<h4>服务指数</h4>
+						<div class="star_wrap" id="star2">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<input type="hidden" value="0颗星星">
+						</div>
+	                </li>
+					<li>
+						<h4>消费指数</h4>
+						<div class="star_wrap" id="star3">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							<input type="hidden" value="0颗星星">
+						</div>					
+					</li>
+				</ul>
+			</div>
+
+			<div id="tags1">
+				<h2>给景区添加标签</h2>	
+				<h4>最多只能选3个哦！</h4>
+				<div id="tag1_list">
+					<label>
+						<input type="checkbox" name="tag1">
+						<span>景色棒极了</span>
+					</label>
+					<label>
+						<input type="checkbox" name="tag1">
+						<span>环境还好啦</span>
+					</label>
+					<label>
+						<input type="checkbox" name="tag1">
+						<span>人太多啦！</span>
+					</label>
+					<label>
+						<input type="checkbox" name="tag1">
+						<span>没有辨识度</span>
+					</label>
+					<label>
+						<input type="checkbox" name="tag1">
+						<span>美少女聚集地</span>
+					</label>
+					<label>
+						<input type="checkbox" name="tag1">
+						<span>服务不错哦</span>
+					</label>
+					<label>
+						<input type="checkbox" name="tag1">
+						<span>值得一去</span>
+					</label>
+					<label>
+						<input type="checkbox" name="tag1">
+						<span>去了就后悔</span>
+					</label>
+				</div>
+		    </div>
+
+		<!-- 	<div class="clear"></div> -->
+
+			<div id="m_footer">
+				<p class="infor">提示信息</p>
+				<input class="btn" type="button" value="提交">
+			</div>
+		</div>
+
+	</section>
+
+	<section class="page" id="mask"></section>
+
+	<section class="page" id="news">
+		<div id="news_img">
+			<img src="img/news.png" alt="">
+		</div>
+
+		<div id="file">
+			<h2>请上传旅游投诉以及突发事件线索</h2>
+			<label>
+				<input type="file">
+				<img src="img/camera1.png" alt="">
+				<span>导入视频</span>
+			</label>
+			<label>
+				<input type="file">
+				<img src="img/camera2.png" alt="">
+				<span>上传图片</span>
+			</label>
+		</div>
+		<p class="infor">232322</p>
+	</section>
+
+	<section class="page" id="submit">
+		<div id="tags2">
+			<h2>给视频添加标签</h2>	
+			<h4>最多只能选3个哦！</h4>
+			<div id="tag2_list">
+				<label>
+					<input type="checkbox" name="tag2">
+					<span>景色棒极了</span>
+				</label>
+				<label>
+					<input type="checkbox" name="tag2">
+					<span>环境还好啦</span>
+				</label>
+				<label>
+					<input type="checkbox" name="tag2">
+					<span>人太多啦！</span>
+				</label>
+				<label>
+					<input type="checkbox" name="tag2">
+					<span>没有辨识度</span>
+				</label>
+				<label>
+					<input type="checkbox" name="tag2">
+					<span>美少女聚集地</span>
+				</label>
+				<label>
+					<input type="checkbox" name="tag2">
+					<span>服务不错哦</span>
+				</label>
+				<label>
+					<input type="checkbox" name="tag2">
+					<span>值得一去</span>
+				</label>
+				<label>
+					<input type="checkbox" name="tag2">
+					<span>去了就后悔</span>
+				</label>
+			</div>
+		</div>
+
+		<div id="text">
+			<textarea rows="5" placeholder="  随便说点什么吧！(选填)"></textarea>
+
+			<input type="tel" placeholder="  填一下电话号码？(选填)">
+		</div>
+
+		<div id="s_footer">			
+				<input class="btn" type="button" value="提交">
+		</div>
+	</section>
+
+	<section id="over" class="page">
+		<div class="top">
+			<ul class="list">
+				<li>
+					<img src="./img/tree.jpg" alt="">
+
+					<img id="cloud1" src="./img/cloud.png" alt="">
+					<img id="cloud2" src="./img/cloud.png" alt="">
+					<img id="cloud3" src="./img/cloud.png" alt="">
+				</li>
+				<li>
+					<img src="./img/tranks2.png" alt="">
+				</li>
+			</ul>
+		</div>
+ 		
+ 		<div id="o_footer">
+				<input class="btn" type="button" value="重新评价">
+		</div>
+	</section>
+</body>
+<script src="./js/imgGo.js"></script>
+<script src="./js/mScroll.js"></script>
+<script src="./js/m.Tween2.js"></script>
+<script>
+	document.addEventListener('touchstart', function(e) {
+	    e.preventDefault(); 
+	});
+	setWH();
+	function setWH (){
+		var sec=document.getElementsByClassName('page');
+
+		
+		for(var i=0;i<sec.length;i++)
+		{
+			sec[i].style.width=document.documentElement.clientWidth+"px";
+			// console.log(sec[0].offsetWidth);
+			sec[i].style.height=document.documentElement.clientHeight+"px";
+		}
+	}/*set页面宽高*/
+</script>
+
+<script>	
+	var arrimg=["./img/1.jpg","./img/2.jpg","./img/3.jpg","./img/4.jpg","./img/5.jpg"];	
+	var anionoff=false;
+	var imgonoff=false;
+	var wel=document.getElementById('welcome');
+	var main=document.getElementById('main');
+	var num=0;
+	var iul=document.getElementById('i_list');	
+	var bul=document.getElementById("b_list"); 
+	var lis=iul.getElementsByTagName("li");
+	var s_tag=0;
+    mainbefore();
+
+    function mainbefore(){
+    	animateload();
+
+    	for(var i=0;i<lis.length;i++)
+			{   
+				lis[i].src=arrimg[i%arrimg.length];
+				imgload(lis[i]);
+		    }	   
+    }
+
+    function mainafter(){   	
+		imgGo(iul,bul,61.25,4000);
+		var star1=document.getElementById("star1");
+   		var span1=star1.getElementsByTagName("span");
+   		var star2=document.getElementById("star2");
+   		var span2=star2.getElementsByTagName("span");
+   		var star3=document.getElementById("star3");
+   		var span3=star3.getElementsByTagName("span");
+   		var news=document.getElementById("news");
+
+   		mScroll({
+   			el:main,
+   			offBar:true,
+   			back:0
+   		});
+
+   		setStar(star1,span1);
+   		setStar(star2,span2);
+   		setStar(star3,span3); 	
+   		
+   	    m_isOver();
+   		m_submit();
+
+   		var toNews=document.getElementById("toNews");
+
+   		toNews.addEventListener("touchend",function(){
+   			toNewpage(main,news,800);
+   		})
+
+   		var sbt=document.getElementById("submit");
+   		type();
+   			
+        addTags();
+   		    
+		overRest();			
+	}
+
+    function animateload(){  	
+    	wel.style.display="block";
+    	var nowtime=new Date().getTime();
+    	var timer=null;
+    	timer=setInterval(function(){
+    		if (new Date().getTime()-nowtime>=4000) {
+    			clearInterval(timer);
+    			anionoff=true;    			
+    		}
+    		if (imgonoff&&anionoff) {
+
+    				wel.style.opacity=0;
+		   		setTimeout(function(){
+		   			wel.style.display="none";
+
+		   			main.style.display="block";
+
+		   			setTimeout(function(){
+		   				main.style.opacity="1";
+		   				mainafter();
+		   			},50)
+		   			//主页面出现后才找的到元素 iul	 bul.
+		   		},500)					
+		    }   	
+    	},1000)
+    }
+   
+
+    function imgload(li){		
+		var img=new Image();
+		img.src=li.src;
+		img.onload=function(){
+			li.appendChild(img);
+			num++;	
+			if (num==lis.length) {
+		    	imgonoff=true;			   	
+		    }	           
+		}		
+	}
+ 
+    function setStar(wrap,span){
+   		var submit=wrap.getElementsByTagName("input")[0];
+        
+   		for(var i=0;i<span.length;i++)
+   		{   
+   			span[i].index=i;
+   			span[i].addEventListener("touchstart",function(){
+    			this.isMove=false;
+    		});
+    		span[i].addEventListener("touchmove",function(){
+    			this.isMove=true;
+    		});	
+   			span[i].addEventListener("touchend",function(){
+   				if(this.isMove==false){
+		   			submit.value=this.index+1+"颗星星";
+		   		    for(var i=0;i<span.length;i++)
+		   		    {
+		   		    	if (this.index>=i) {   	
+		   					span[i].style.backgroundPosition="-4px 0";
+		   				}
+		   				else{
+		   					span[i].style.backgroundPosition="-80px 0";
+		   				}
+		   		    } 
+		   		} 				
+   			})
+   		}
+    } 
+
+    function m_isOver(){
+        var tag=0;
+    	var tags=document.getElementById("tags1");
+   		var inps=tags.getElementsByTagName("input");
+   		var h4=tags.getElementsByTagName("h4")[0];
+   		var labs=tags.getElementsByTagName("span");
+   		for(var i=0;i<inps.length;i++)
+   		{   
+   			labs[i].index=i;
+   			labs[i].addEventListener("touchstart",function(){
+    			this.isMove=false;
+    		});
+    		labs[i].addEventListener("touchmove",function(){
+    			this.isMove=true;
+    		});	
+   			labs[i].addEventListener("touchend",function(){   
+   				if (this.isMove==false) {
+	   				var that=this;	   			
+	   				if(inps[this.index].checked){
+	   					tag--;
+	   				}
+	   				else{ 				
+	   					tag++;	   			  				
+	   				}
+	   				if(tag>=4){ 					
+	   					h4.style.opacity="1";
+	   					tag=3; 					
+	   					setTimeout(function(){
+	   						h4.style.opacity="0";
+	  						inps[that.index].checked=false;
+	   					},500)
+	   				}	   				
+	   			}
+   			})   			
+   		}   		
+    }
+
+    function s_isOver(tags,s_submit,s_dis){     
+   		var inps=tags.getElementsByTagName("input");
+   		var h4=tags.getElementsByTagName("h4")[0];
+   		var labs=tags.getElementsByTagName("span");
+   		for(var i=0;i<inps.length;i++)
+   		{   
+   			labs[i].index=i;   		
+   			labs[i].addEventListener("touchstart",function(){
+    			this.isMove=false;
+    		});
+    		labs[i].addEventListener("touchmove",function(){
+    			this.isMove=true;
+    		});	
+   			labs[i].addEventListener("touchend",function(){
+  		
+   				if (this.isMove==false) {
+
+	   				var that=this;
+	   			
+	   				if(inps[this.index].checked){
+	   					s_tag--;
+	   				}
+	   				else{ 				
+	   					s_tag++;
+	   					s_submit&&s_submit();
+	   				}
+	   				if(s_tag>=4){ 					
+	   					h4.style.opacity="1";
+	   					s_tag=3; 					
+	   					setTimeout(function(){
+	   						h4.style.opacity="0";
+	  						inps[that.index].checked=false;
+	   					},500)
+	   				}
+	   				if (s_tag==0) {
+	   					s_dis&&s_dis();
+	   				}
+	   			}
+   			})   			
+   		}   		
+    }
+   
+    function addTags(){   
+   		var sbt=document.getElementById("submit");
+   		var tags2=document.getElementById("tags2");
+   		var s_footer=document.getElementById("s_footer");
+   		var btn=s_footer.getElementsByTagName("input")[0]; 
+        var over=document.getElementById("over");
+        var btnonoff=false;
+       
+        s_isOver(tags2,
+        	function(){            
+	   			btnonoff=true;
+	   			btn.style.background="#3c9bbb";
+	   			btn.style.color="white";
+	         
+				btn.addEventListener("touchend",function(){
+					// sbt.style.opacity="0";
+	                if (btnonoff) {
+						toNewpage(sbt,over,800);
+						s_tag=0;
+						var tags2=document.getElementById("tags2");
+		   				var input=tags2.getElementsByTagName("input");
+		   				setTimeout(function(){
+		   					for(var i=0;i<input.length;i++)
+				   			{
+				   				input[i].checked=false;
+				   			}
+				   			btn.style.background="#cacaca";
+							btn.style.color="black";
+							btnonoff=false;
+		   				},500)	   		
+				    }
+		        })
+			},
+			function(){
+			btn.style.background="#cacaca";
+			btn.style.color="black";
+		});		
+    }
+
+    function m_submit(){  
+   		var tags=document.getElementById("tags1");
+   		var inps=tags.getElementsByTagName("input"); 		
+   		var footer=document.getElementById("m_footer");
+   		var btn=footer.getElementsByTagName("input")[0];
+   		var p=footer.getElementsByTagName("p")[0];
+   		var score=document.getElementById("score");
+   		var sc_inp=score.getElementsByTagName("input");
+
+   		btn.addEventListener("touchend",function(){
+	   		var sconoff=true;
+	   		var tagonoff=false;
+   			for(var i=0;i<sc_inp.length;i++)
+	   		{ 
+	   			if(sc_inp[i].value=="0颗星星"){
+	   				sconoff=false;
+
+	   			}
+	   		}
+
+   		for(var i=0;i<inps.length;i++)
+	   		{
+	   			if(inps[i].checked){
+	   				tagonoff=true;
+	   			}
+	   		}
+   		   if(sconoff==false)
+   		   {
+   		   		p.style.WebkitTransform="scale(1)";
+   				p.style.opacity=1;
+   				p.innerHTML="至少要给我一颗星星呀！";
+   				setTimeout(function(){
+   					p.style.WebkitTransform="scale(0)";
+   					p.style.opacity=0;
+   				},1000)
+   		   }
+   		   else{
+   		   		if(tagonoff==false){
+   		   			p.style.WebkitTransform="scale(1)";
+	   				p.style.opacity=1;
+	   				p.innerHTML="至少要给我一个标签呀！";
+	   				setTimeout(function(){
+	   					p.style.WebkitTransform="scale(0)";
+	   					p.style.opacity=0;
+	   				},1000)
+   		   		}
+   		   		else{
+   		   			var mask=document.getElementById("mask");
+   		   			mask.style.display="block";
+   		   			setTimeout(function(){
+   		   				mask.style.opacity="1";
+   		   				main.style.WebkitFilter="blur(6px)";
+   		   					setTimeout(function(){
+   		   						mask.style.opacity="0";
+   		   						main.style.opacity="0";
+   		   						news.style.display="block";
+
+   		   							setTimeout(function(){
+   		   								mask.style.display="none";
+   		   								main.style.WebkitFilter="none";
+   		   								main.style.display="none";
+   		   								news.style.opacity="1";
+   		   							},800);
+   		   					},1600)
+   		   			},100)
+   		   		}
+   		   }   			
+   		})
+    }
+
+    function type(){
+   		var sbt=document.getElementById("submit");
+   		var flie=document.getElementById("file");
+   		var f_inp=flie.getElementsByTagName("input");
+   		var p=document.getElementsByClassName("infor")[1];
+
+   		f_inp[0].onchange=function(){
+   			if (this.files) {
+	   			if (this.files[0].type.indexOf("video")==-1) {
+	   				p.style.WebkitTransform="scale(1)";
+	   				p.style.opacity=1;
+	   				p.innerHTML="请上传视频哦！";
+	   				this.value="";
+	   				setTimeout(function(){
+	   					p.style.WebkitTransform="scale(0)";
+	   					p.style.opacity=0;
+	   				},1000)   				
+	   			}
+
+	   			else{
+	   				toNewpage(news,sbt,800);
+	   				this.value="";
+	   			}
+   			}
+   		}
+   		f_inp[1].onchange=function(){
+   			
+   			if (this.files) {
+	   			if (this.files[0].type.indexOf("image")==-1) {
+	   				p.style.WebkitTransform="scale(1)";
+	   				p.style.opacity=1;
+	   				p.innerHTML="请上传图片哦！";
+	   				setTimeout(function(){
+	   					p.style.WebkitTransform="scale(0)";
+	   					p.style.opacity=0;
+	   				},1000)   				
+	   			}
+	   			else{	   				
+	   				toNewpage(news,sbt,800);	   				
+	   				this.value="";
+	   			}
+   			}
+   		}
+    }
+
+ 	function overRest(){
+ 		var o_footer=document.getElementById("o_footer");
+   		var btn=o_footer.getElementsByTagName("input")[0]; 
+
+   		btn.addEventListener("touchend",function(){
+   			toNewpage(over,main,800);
+   		});
+ 	}
+      
+    function toNewpage(old,news,time){
+		old.style.opacity="0";
+	   	
+	   	setTimeout(function(){
+			old.style.display="none";
+			news.style.display="block";
+			setTimeout(function(){
+				news.style.opacity="1";
+			},100)
+			
+		},time);
+    }
+</script>
+</html>

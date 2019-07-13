@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <meta name="viewport" content="width:device-width,user-scalable=no"/>
+    <link rel="stylesheet" href="./css/reset.css">
+</head>
+<script>
+(function(){
+	changeSize();
+	window.addEventListener('orientation' in window?"deviceorientation":"resize",changeSize);//同时兼容pc端的onresize,和移动端的横竖屏事件。
+	function changeSize(){
+		var html=document.documentElement;
+		var width=html.clientWidth;
+		html.style.fontSize=width/16+"px";
+	}
+})()
+</script>
+<style>
+body,html{
+	margin: 0px;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+ul{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+header{
+	width: 100%;
+	height: 2rem;
+	background:black;
+    color: white;
+	text-align: center;
+	line-height: 2rem;
+	letter-spacing: .3rem; 
+}
+#main{
+	position: absolute;
+	width: 100%;
+	top: 2rem;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	background:#eee;
+	overflow: hidden;
+/*	overflow: auto;*/
+}
+#list{
+	overflow: hidden;
+}
+
+#list li {
+	background: url(./img/loadingimg.gif) center center no-repeat;
+	background-size:1rem 1rem;
+	width: 7rem;
+	margin: .5rem;
+	height: 5rem;
+	float: left;
+	border: .1rem solid black;
+	box-sizing: border-box;
+}
+#list img{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: 3s opacity;
+}
+
+#mark{
+    transition: .5s top;
+	position: absolute;
+	/*top: 0px;*/
+	left: 0px;
+    background:rgba(230,230,250,.8);
+}
+nav{
+	width: 100%;
+    line-height:2rem;
+    font-size: .8rem 
+	height: 2rem;
+}
+nav a{
+	text-decoration: none;
+	color:black;
+	display: block;
+	float: left;
+	width: 3.4rem;
+	height: 100%;
+	margin :.3rem;
+	border:.1rem solid #BCEE68;
+	background: white;
+	box-sizing: border-box;
+	text-align: center;
+	border-radius: 50%;
+	outline: none;
+}
+#bigimg{
+	width: 10rem;
+	height: 8rem;
+	position: absolute;
+	top: 32%;
+    left:3rem;	
+	border:0.26rem solid #BCEE68;
+	box-sizing: border-box;
+	display:block;
+
+}
+#back{
+	position: absolute;
+	bottom: .6rem;
+	width: 2rem;
+    height: 2rem;
+    font-size: 2rem;
+    line-height:1.2rem;
+    text-decoration: none;
+    color: red;
+    border:.2rem solid #BCEE68;
+	text-align: center;
+	left: 7rem;
+	border-radius: 50%;
+	box-sizing: border-box;
+}
+#box{
+    position: relative;
+}
+#box footer{
+	
+	position: absolute;
+	left: 0;
+	right: 0/*left: 0;right: 0 固定宽度才能使用text-align:center*/;
+	bottom: -2rem;
+	height:2rem;
+	line-height: 2rem;
+	font-size: .8rem;
+	text-align: center;
+	opacity: 0;
+}
+
+
+</style>
+<body>
+	<header>图片列表</header>
+	<section id="main">
+		<div id="box">
+			<ul id="list">
+				<!-- <li>
+					<img src="./img/1.jpg" alt="">
+				</li> -->						
+			</ul>
+			<footer>加载更多中~~~</footer>
+		</div>
+	</section>
+    
+    <div id="mark">
+    	<header>大图预览</header>
+    	<nav>
+    		<a class="btn" href="javascript:;">向左</a>
+    		<a class="btn" href="javascript:;">向右</a>
+    		<a class="btn" href="javascript:;">放大</a>
+    		<a class="btn" href="javascript:;">缩小</a>
+    	</nav>
+    	<section>
+    		<img id="bigimg" src="img/1.jpg" alt="">
+    	</section>
+
+    	<a id="back" href="javascript:;">x</a>
+    </div>
+
+</body>
+<script src="./js/setGesture.js"></script>
+<script src="./js/m.Tween2.js"></script>
+<script src="./js/mScroll.js"></script>
+<script>
+	document.addEventListener('touchstart', function(e) {
+	    e.preventDefault(); 
+	});
+
+    var arrimg=[];     
+    var list=document.getElementById('list');
+    var box=document.getElementById("box");
+    var main=document.getElementById("main");
+    var footer=main.getElementsByTagName('footer')[0];
+    var bimg=document.getElementById("bigimg");
+    var backBtn=document.getElementById("back");
+   
+    var length=12;
+    var start=0;
+    var end=0;
+
+ 	beforeStart();
+
+ 	function beforeStart(){
+		var mark=document.getElementById('mark');			
+		var awid=document.documentElement.clientWidth;
+		var ahei=document.documentElement.clientHeight;	
+		mark.style.width=awid+"px";
+		mark.style.height=ahei+"px";
+		mark.style.top=-ahei+"px";
+		for(var i=0;i<38;i++)
+		{
+			arrimg.push("./img/"+(i%16+1)+".jpg");
+		}
+		if (length>arrimg.length) {
+			length=arrimg.length;
+		}
+
+		backBtn.addEventListener("touchend",function(){
+    		
+    		this.style.background="orange";
+    		that=this;
+    		setTimeout(function(){
+    			that.style.background="white";
+    			mark.style.top=-ahei+"px";
+    		},200)
+    		
+        })
+        changeImg();
+		createLi();
+        createScroll();
+    }
+   
+   
+
+    function createLi(){
+    	end=start+length;
+
+    	for(var i=start;i<end;i++)
+    	{
+    		var li=document.createElement("li");
+    		li.src=arrimg[i];
+    		li.onoff=true;
+    		list.appendChild(li);
+    	}
+        showImg();  
+    }
+
+    function showImg(){
+    	var lis=list.getElementsByTagName("li");
+
+    	var isMove=false;
+    	    	
+    	var bottom=main.getBoundingClientRect().bottom;
+
+    	for(var i=0;i<lis.length;i++)
+    	{   
+    		lis[i].addEventListener("touchstart",function(){
+    			this.isMove=false;
+    		});
+    		lis[i].addEventListener("touchmove",function(){
+    			this.isMove=true;//只要滚动条在移动，就会触发touchmove函数，为了避免滚动条移动结束后触发touchend事件，就需要这个isMove来作判断条件。只有只发生过start和end两个事件，没有发生过move事件才能通过条件然后mark层出现。
+    		});
+    		lis[i].addEventListener("touchend",function(){
+    			if (this.isMove!=true) {
+    				css(bigimg,"scale",100);
+    				css(bigimg,"rotate",0);
+	    			bimg.src=this.src;
+	    			mark.style.top="0px";
+    			}
+    		});
+    		//lis[i].onoff=true;怎么能在这添加这个呢？那不是在拉条move的时候就一直把开关打开吗？
+    		if (lis[i].getBoundingClientRect().top<bottom&&lis[i].onoff==true) {
+    		   lis[i].onoff=false;   
+    	    	readyImg(lis[i]);	    	    	 	    
+    		}  		
+    	}   	
+    }
+        
+    function readyImg(li){
+    	var img=new Image();//new Date();
+	    img.src=li.src;	 
+	    img.onload=function(){
+	    	li.appendChild(img);
+	    	setTimeout(function(){
+	    		img.style.opacity=1;
+	    	},500)
+	    }	   	    
+    }
+
+    function createScroll(){    	
+    	var isend=false;    	
+    	mScroll({
+    		el:main,
+    		start:function(){
+    			// console.log(css(box,"translateY")-10,main.clientHeight-list.offsetHeight);
+ 				var xtop=main.clientHeight-list.offsetHeight;
+ 				var trasY=css(box,"translateY")-5;
+  				if (xtop>=trasY) {
+  				 	isend=true;				 	
+  				}
+    		},
+    		move:function(){
+    			showImg();
+    		},
+    		end:function(){
+    			var scroll=document.getElementById('scrollBar');//只有这里才找的到scrollBar;
+    			var xtop=main.clientHeight-list.offsetHeight;
+    			if (xtop>0) {
+    				xtop=0;//防止外框高度大于内容高度，出现错误的translateY。
+    			}
+ 				var trasY=css(box,"translateY")-5;
+ 				if (xtop>=trasY&&isend) {
+ 					footer.style.opacity=1;
+ 					clearInterval(box.timer);//清除动画，防止弹回。
+ 					scroll.style.display = "none";
+ 					start=end;
+ 					// console.log(start,end,arrimg.length);
+ 					if (start+length>=arrimg.length) {
+ 						length=arrimg.length-start;
+ 						if (length==0) {//当在进行最后一次添加后，start=arrimg.length，这时候依然满足start+length>=arrimg.length，所以再次拉动滚动条的时候就会进行到这个If判断里面。
+ 							footer.innerHTML="暂时没有更多了";
+	 						MTween({
+	 							el:box,
+	 							target:{
+	 								translateY:xtop
+	 							},
+	 							time:600,
+	 							type:"backOut"
+	 						})
+	 						return;//直接return，将不执行下一个定时器。
+ 						}                                
+ 					} 					
+ 					setTimeout(function(){
+ 						createLi();
+ 						isend=false;
+                    	footer.style.opacity=0;
+ 					},1000); 			
+ 				}
+    		}
+    	})
+    }
+
+    function changeImg(){ 
+    	var as=document.getElementsByClassName("btn");
+    	var startScale=0;
+    	var startRotate=0;
+    	setGesture({
+        	el:bimg,
+        	start:function(e){
+        		startScale=css(bimg,"scale")/100;
+        		startRotate=css(bimg,"rotate");
+        		},
+        	change:function(e){
+    	    	var nowScale= startScale*e.rotation*100;//放大缩小用乘法！
+    	    	if (nowScale>150) {
+    	    		nowScale=150;
+    	    	}
+    	    	else if (nowScale<50) {
+    	    		nowScale=50;
+    	    	}
+    	    	css(bimg,"scale",nowScale);
+    	    	css(bimg,"rotate",startRotate+e.rotation);//角度变化用相加。
+    	    },
+    	    end:function(e){
+    	    	var nowdeg=css(bimg,"rotate");
+
+    	    	var inow=Math.round(nowdeg/90);//得到一个整数。
+
+    	    	MTween({
+    	    		el:bimg,
+    	    		target:{
+    	    			rotate:inow*90
+    	    		},
+    	    		time:300,
+    	    		type:"easeBoth"
+    	    	})
+    	    }
+    	});
+
+    	as[0].addEventListener("touchend",function(){
+    		this.style.background="orange";
+    		var lastdeg=css(bimg,"rotate");
+    		var inow=Math.round(lastdeg/90)-1;
+
+    	    	MTween({
+    	    		el:bimg,
+    	    		target:{
+    	    			rotate:inow*90   	    			
+    	    		},
+    	    		time:200,
+    	    		type:"easeBoth",
+    	    		callBack:function(){
+    	    			as[0].style.background="white";
+    	    		}
+    	    	})
+    	})
+
+    	as[1].addEventListener("touchend",function(){
+    		this.style.background="orange";
+    		var lastdeg=css(bimg,"rotate");
+    		var inow=Math.round(lastdeg/90)+1;
+
+    	    	MTween({
+    	    		el:bimg,
+    	    		target:{
+    	    			rotate:inow*90
+    	    		},
+    	    		time:200,
+    	    		type:"easeBoth",
+    	    		callBack:function(){
+    	    			as[1].style.background="white";
+    	    		}
+    	    	})
+    	})
+
+    	as[2].addEventListener("touchend",function(){
+    		this.style.background="orange";
+    		var lastScale=css(bimg,"scale");
+    		var nowScale=lastScale+10;
+    		if (nowScale>150) {
+    			nowScale=150;
+    		}
+
+    	    	MTween({
+    	    		el:bimg,
+    	    		target:{
+    	    			scale:nowScale
+    	    		},
+    	    		time:200,
+    	    		type:"easeBoth",
+    	    		callBack:function(){
+    	    			as[2].style.background="white";
+    	    		}
+    	    	})
+    	})
+
+    	as[3].addEventListener("touchend",function(){
+    		this.style.background="orange";
+    		var lastScale=css(bimg,"scale");
+    		var nowScale=lastScale-10;
+    		if (nowScale<50) {
+    			nowScale=50;
+    		}
+    	    	MTween({
+    	    		el:bimg,
+    	    		target:{
+    	    			scale:nowScale
+    	    		},
+    	    		time:200,
+    	    		type:"easeBoth",
+    	    		callBack:function(){
+    	    			as[3].style.background="white";
+    	    		}
+    	    	})
+    	})
+    }    	          
+</script>
+</html>
